@@ -1,0 +1,13 @@
+---
+layout: default
+---
+{% assign title = page.name %}
+{% assign description = page.name %}
+
+<div id="words-page">
+    <h1 class="title">{{ page.title }}</h1>
+    <hr />
+    <div class="words">{{ content }}</div>
+</div>
+
+{% include pager.html %}

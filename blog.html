@@ -1,0 +1,59 @@
+---
+title: Projects
+---
+<div class="container">
+</div>
+
+<div class="project-container">
+  <h1 id="projects-title">ESStudio blog</h1>
+  <p>Get all information about our studio from latest news posts & updates page.</p>
+  <br>
+  <div style="text-align: center;">
+    <a href="#"><span class="label label-danger">Photography</span></a>
+    <a href="#"><span class="label label-danger light">Coding</span></a>
+    <a href="#"><span class="label label-danger light">Web development</span></a>
+  </div>
+</div>
+
+<script>
+  var FEED_URL = 'https://esstudio.site/feed';
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Typical action to be performed when the document is ready:
+      var feed = this.responseXML;
+      var entries = feed.getElementsByTagName('entry');
+
+      for (var i = 0; i < entries.length; i++) {
+        var entry = entries[i];
+        var lang = entry.getAttribute('xml:lang');
+        var thumbnail = entry.getElementsByTagName('media:thumbnail')[0];
+        if (thumbnail) thumbnail = thumbnail.getAttribute('url');
+        var link = entry.getElementsByTagName('link')[0];
+        var linkTitle = link.getAttribute('title');
+        var linkHref = link.getAttribute('href');
+        var title = entry.getElementsByTagName('title')[0].innerHTML;
+        var description = entry.getElementsByTagName('summary')[0].innerHTML;
+        var date = new Date(entry.getElementsByTagName('published')[0].innerHTML).toDateString(); 
+        document.write('<div class="container">\
+  <div class="project-box">\
+    <div class="row">\
+      <div class="col-md-3 project-image">\
+        <img src="' + thumbnail + '">\
+      </div>\
+      <div class="col-md-9 project-post">\
+        <h1>' + title + '</h1>\
+        <h4>' + description + '</h4>\
+        <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> ' + date + '</small></p>\
+        <hr />\
+        <p><a title="' + linkTitle + '"' + (lang ? ' hreflang="' + lang + '"' : 'en') + ' href="' + linkHref + '">More</a></p>\
+      </div>\
+    </div>\
+  </div>\
+</div>');
+      }
+    }
+  };
+  xhttp.open("GET", FEED_URL, false);
+  xhttp.send();
+</script>

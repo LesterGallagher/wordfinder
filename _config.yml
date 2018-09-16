@@ -1,0 +1,56 @@
+name: Word Finder
+author: Sem Postma
+baseurl: 
+description: Find words for the game scrabble. Word finder from esstudio is the easiest to use wordfinder.
+github: https://github.com/LesterGallagher/wordfinder
+twitter: 
+facebook: https://www.facebook.com/ES-Studio-2052606714783317 
+author:
+  twitter: esstudio_site
+image: images/logo.png
+logo: images/logo.png
+facebook:
+  app_id:
+  publisher:
+  admins:
+google_analytics:
+
+collections:
+  words:
+    output: true
+    permalink: /:collection/:name
+
+##Make sure to edit the above fields, especially for disqus.
+
+highlighter: rouge
+markdown: kramdown
+
+plugins: 
+  - jekyll-seo-tag
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      lang: en
+      image: 
+        height: 100
+        width: 100
+        path: images/logo-sm.png
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "default"
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+  - scope:
+      path: ""
+      type: "words"
+    values:
+      layout: "word"
+
+

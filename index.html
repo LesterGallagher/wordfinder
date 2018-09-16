@@ -1,0 +1,144 @@
+---
+title: Word Finder
+---
+
+<div style="padding: 10px;">
+  <h1 class="title">Word Finder</h1>
+  <p>
+    Trying to find words in scrabble? Use wordfinder.
+    Word finder is a tool that will find all possible combination of words that you can form with a combination of letters.
+    You can use question marks to specify wildcards. For example, "BEL?" may find the word "beep".
+    Word finder can also use "In order" mode, which will not reorder the words. If you use strict mode for example, "BEL?" may find the word "belt".
+  </p>
+  <div class="form-group">
+    <label for="word">Word</label>
+    <input pattern="[a-zA-Z]*" maxlength="15" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"
+      class="form-control" type="text" name="Word" id="word">
+  </div>
+  <div class="form-group">
+    <b>In order</b><br>
+    <label class="switch">
+      <input id="strictswitch" type="checkbox">
+      <span class="slider round"></span>
+    </label>
+  </div>
+  <button class="btn" id="findword">Find Words</button>
+  <div id="results"></div>
+  <br>
+</div>
+
+
+<script>
+
+  var counter = 0;
+  var pageSize = 20;
+
+  fetch('./resources/words.txt')
+    .then(response => response.text())
+    .then(text => {
+      var t0 = performance.now();
+      var arr = text.split('\n');
+      var map = [];
+      var findword = document.getElementById('findword');
+      var w = document.getElementById('word');
+      var results = document.getElementById('results');
+      var result;
+      var strictSwitch = document.getElementById('strictswitch');
+      var t1 = performance.now();
+
+      console.log('done in ' + (t1 - t0) + " milliseconds.");
+
+      findword.addEventListener('click', function () {
+        var word = w.value.toLowerCase();
+        var words;
+        var strict = strictSwitch.checked;
+        if (strict) {
+          words = arr.slice();
+          for (var i = 0; i < word.length; i++) {
+            if (word[i] === '?') continue;
+            words = words.filter(l => l[i] === word[i]);
+          }
+          words = words.filter(l => l[i] === undefined);
+        } else {
+          var questionMarksLen = word.split("?").length - 1;
+          var wordLen = word.length;
+          word = word.replace('?', '').replace('?', '');
+          words = arr.filter(a => {
+            if (a.length > wordLen) return;
+            var q = questionMarksLen;
+            for (var j = 0; j < a.length; j++)
+              if (word.indexOf(a[j]) === -1)
+                if (q-- === 0) return false;
+            return true;
+          });
+        }
+        var resDic = {};
+        for (var i = 0; i < words.length; i++) {
+          resDic[words[i].length] = resDic[words[i].length] || [];
+          resDic[words[i].length].push(words[i]);
+        }
+        console.log(resDic);
+
+        while (results.firstChild) results.removeChild(results.firstChild);
+
+        for (const wordLen in resDic) {
+          (function (wordLen) {
+            var arr = resDic[wordLen];
+            var table = document.createElement('table');
+            var tbody = table.appendChild(document.createElement('tbody'));
+            var tfoot = table.appendChild(document.createElement('tfoot'));
+            var caption = table.appendChild(document.createElement('caption'));
+            caption.innerText = wordLen + ' letter words';
+            var count = 0;
+            var entry
+            function more() {
+              for (var i = count; i < Math.min(count + pageSize, arr.length); i++) {
+                if (i % 3 === 0) entry = tbody.appendChild(document.createElement('tr'));
+                var td = entry.appendChild(document.createElement('td'));
+                td.innerText = arr[i];
+              }
+              count = i;
+              if (i < Math.min(arr.length) === false) moreBtn.style.display = 'none';
+            }
+            // table.classList.add('table');
+            table.classList.add('result');
+            // table.classList.add('table-hover');
+            var moreBtn = tfoot.appendChild(document.createElement('button'));
+            moreBtn.classList.add('btn');
+            moreBtn.innerText = 'More';
+            moreBtn.addEventListener('click', function () {
+              more();
+            });
+            more();
+            results.appendChild(table);
+          })(wordLen);
+        }
+
+        // for (var i = 0; i < words.length; i++) {
+        //     var entry = results.appendChild(document.createElement('p'));
+        //     entry.innerText = words[i];
+        //     entry.style.display = i > pageSize ? 'none' : 'display';
+        // }
+      });
+
+      w.addEventListener('input', function () {
+        var start = this.selectionStart,
+          end = this.selectionEnd;
+
+        this.value = this.value.toLowerCase().trimLeft().replace(' ', '?');
+        this.value = this.value.toLowerCase().replace(/[^a-z?]*/g, '');
+
+        // restore from variables...
+        this.setSelectionRange(start, end);
+      });
+
+    });
+
+  function objValues(obj) {
+    var ret = [];
+    for (var key in obj) ret.push(obj[key]);
+    return ret;
+  }
+
+
+</script>

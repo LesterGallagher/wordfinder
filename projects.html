@@ -1,0 +1,48 @@
+---
+title: Projects
+---
+<div class="container">
+</div>
+
+<div class="project-container">
+  <h1 id="projects-title"></h1>
+  <p>Projects (and useless thingies) by ESS.</p>
+  <br>
+  <div style="text-align: center;">
+    <a href="#"><span class="label label-danger">Photography</span></a>
+    <a href="#"><span class="label label-danger light">Coding</span></a>
+    <a href="#"><span class="label label-danger light">Web development</span></a>
+  </div>
+</div>
+
+<script>
+  var FEED_URL = 'https://esstudio.site/resources/works.json';
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function () {
+    if (this.readyState == 4 && this.status == 200) {
+      // Typical action to be performed when the document is ready:
+      var works = JSON.parse(this.responseText);
+      for (var i = 0; i < works.length; i++) {
+        var project = works[i];
+        document.write('<div class="container">\
+  <div class="project-box">\
+    <div class="row">\
+      <div class="col-md-3 project-image">\
+        <img src="' + project.image + '">\
+      </div>\
+      <div class="col-md-9 project-post">\
+        <h1>' + project.title + '</h1>\
+        <h4>' + project.content + '</h4>\
+        <p class="meta"><small>&nbsp;<i class="fa fa-calendar-o"></i> ' + new Date(project.date).toDateString() + '</small></p>\
+        <hr />\
+        <p><a href="' + project.link + '">More</a></p>\
+      </div>\
+    </div>\
+  </div>\
+</div>')
+      }
+    }
+  };
+  xhttp.open("GET", FEED_URL, false);
+  xhttp.send();
+</script>
