@@ -13,8 +13,9 @@
       <ul class="nav navbar-nav">
         <li><a href="{{ site.baseurl }}/">Word Finder</a></li>
         <li><a href="{{ site.baseurl }}/projects.html">Projects</a></li>
+        <li><a href="{{ site.baseurl }}/links.html">Links</a></li>
         <li><a href="{{ site.baseurl }}/blog.html">Blog</a></li>
-        <li><a href="{{ site.baseurl }}/words.html">Words</a></li>
+        <li><a href="{{ site.baseurl }}/words.html">Words starting with...</a></li>
         <li><a href="{{ site.baseurl }}/about.html">About</a></li>
       </ul>
     </div>
@@ -28,12 +29,13 @@
     <li class="sidebar-brand"><a href="{{ site.baseurl }}/">
         <h1 class="brand">{{ site.name }}</h1>
       </a>
-      <h3>{{ site.description }}</h3>
+      <h3 style="text-indent: 0; padding-left: 40px;">{{ site.description }}</h3>
     </li>
     <hr />
     <li><a href="{{ site.baseurl }}/">Word Finder</a></li>
     <li><a href="{{ site.baseurl }}/projects.html">Projects</a></li>
-    <li><a href="{{ site.baseurl }}/blog.html">Blog</a></li>
+        <li><a href="{{ site.baseurl }}/links.html">Links</a></li>
+        <li><a href="{{ site.baseurl }}/blog.html">Blog</a></li>
     <br>
     <li><a href="{{ site.baseurl }}/words.html"><b>Words</b></a></li>
     {% for page in site.words %}
@@ -43,10 +45,9 @@
     <li><a href="{{ site.baseurl }}/about.html">About</a></li>
     <hr />
     <div id="social-wrapper">
-      <li> <a href="{{ site.twitter }}"><i class="fa fa-twitter-square"></i> @twitter</a></li>
-      <li> <a href="{{ site.linkedin }}"><i class="fa fa-linkedin-square"></i> linkedin</a> </li>
-      <li> <a href="{{ site.facebook }}"><i class="fa fa-facebook-square"></i> facebook</a></li>
-      <li> <a href="{{ site.github }}"><i class="fa fa-github-square"></i> github</a> </li>
+      <li> <a target="_blank" href="{{ site.twitter }}"><i class="fa fa-twitter-square"></i> @twitter</a></li>
+      <li> <a target="_blank" href="{{ site.facebook_username }}"><i class="fa fa-facebook-square"></i> facebook</a></li>
+      <li> <a target="_blank" href="{{ site.github }}"><i class="fa fa-github-square"></i> github</a> </li>
     </div>
     <div style="margin-left: 40px;">
       {% include share.html %}

@@ -77,7 +77,6 @@ title: Word Finder
           resDic[words[i].length] = resDic[words[i].length] || [];
           resDic[words[i].length].push(words[i]);
         }
-        console.log(resDic);
 
         while (results.firstChild) results.removeChild(results.firstChild);
 
@@ -112,6 +111,12 @@ title: Word Finder
             more();
             results.appendChild(table);
           })(wordLen);
+        }
+
+        if (words.length === 0) {
+          var msg = results.appendChild(document.createElement('h3'));
+          msg.innerText = 'Cannot find words with the letters: "' + word.split('').join(', ') + '".';
+
         }
 
         // for (var i = 0; i < words.length; i++) {

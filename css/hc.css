@@ -537,11 +537,6 @@ time
   display:none
 }
 
-.project-post
-{
-  cursor:pointer
-}
-
 .project-post h4
 {
   font-weight:200;
@@ -845,7 +840,7 @@ transform: translateX(26px);
     background-size:contain;
     background-repeat: repeat;
     font-size: 40px;
-    letter-spacing: 37px;
+    letter-spacing: 38px;
     height: 64px;
     max-width: 980px;
     color: #000;
@@ -861,3 +856,11 @@ transform: translateX(26px);
 #words-page {
     padding: 10px;
 }
+
+@media screen and (max-width: 982px) {
+  .project-post {
+    padding-left: 40px;
+  }
+}
+
+

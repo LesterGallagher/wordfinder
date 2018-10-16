@@ -3,10 +3,8 @@ author: Sem Postma
 baseurl: 
 description: Find words for the game scrabble. Word finder from esstudio is the easiest to use wordfinder.
 github: https://github.com/LesterGallagher/wordfinder
-twitter: 
-facebook: https://www.facebook.com/ES-Studio-2052606714783317 
-author:
-  twitter: esstudio_site
+twitter: https://twitter.com/esstudio_site
+facebook_username: https://www.facebook.com/ES-Studio-2052606714783317 
 image: images/logo.png
 logo: images/logo.png
 facebook:
