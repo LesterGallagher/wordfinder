@@ -44,9 +44,8 @@ title: Projects
         if (i % 5 === 4) {
           document.write('<div class="container">\
   <div class="ad-box">\
-    <div class="row">\
-      <div class="col-md-9 project-post">\
-        {% capture ad %}{% include ad-text-embed.html %}{% endcapture %}{{ ad | strip_newlines }}</div>\
+    <div class="project-post">\
+      {% capture ad %}{% include ad-text-embed.html %}{% endcapture %}{{ ad | strip_newlines }}\
     </div>\
   </div>\
 </div>');
