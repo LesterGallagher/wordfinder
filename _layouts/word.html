@@ -4,10 +4,21 @@ layout: default
 {% assign title = page.name %}
 {% assign description = page.name %}
 
-<div id="words-page">
-    <h1 class="title">{{ page.title }}</h1>
-    <hr />
-    <div class="words">{{ content }}</div>
+<div class="col-xs-12 col-sm-9">
+    <div id="words-page">
+        <h1 class="title">{{ page.title }}</h1>
+        <hr />
+        {% include ad.html %}
+        <div class="words">{{ content }}</div>
+    </div>
 </div>
+
+<div class="hidden-xs col-sm-3">
+    {% include ad-text.html %}
+    {% include ad-text.html %}
+    {% include ad-text.html %}
+</div>
+
+<div class="clearfix"></div>
 
 {% include pager.html %}
