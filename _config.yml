@@ -23,6 +23,9 @@ collections:
 highlighter: rouge
 markdown: kramdown
 
+url: https://wordfinder.esstudio.site
+enforce_ssl: wordfinder.esstudio.site
+
 plugins: 
   - jekyll-seo-tag
 
