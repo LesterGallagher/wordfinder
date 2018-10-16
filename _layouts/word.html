@@ -7,8 +7,9 @@ layout: default
 <div class="col-xs-12 col-sm-9">
     <div id="words-page">
         <h1 class="title">{{ page.title }}</h1>
-        <hr />
-        {% include ad.html %}
+        <div class="my-10">
+            {% include ad.html %}
+        </div>
         <div class="words">{{ content }}</div>
     </div>
 </div>
