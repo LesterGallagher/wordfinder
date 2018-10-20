@@ -11,7 +11,7 @@ facebook:
   app_id:
   publisher:
   admins:
-google_analytics:
+google_analytics: UA-90014538-19
 
 collections:
   words:
