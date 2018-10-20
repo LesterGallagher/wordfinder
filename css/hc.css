@@ -872,3 +872,6 @@ transform: translateX(26px);
   margin-bottom: 5px;
 }
 
+.article-ad {
+  padding: 0;
+}
